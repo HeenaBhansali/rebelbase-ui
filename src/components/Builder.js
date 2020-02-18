@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import initialData from "../initial-dataAll"
+import initialData from "../initial-data"
 import Stage from "./Stage"
+import Template from "./Template"
 
 const Container = styled.div`
-  width: 60%;
+  width: max-content;
   border: 1px solid black;
   position: absolute;
   margin-left: 20%;
@@ -17,6 +18,7 @@ const Container = styled.div`
 `
 const Section = styled.section`
   padding-left: 10px;
+  width: max-content;
 `
 
 const Div = styled.div`
@@ -45,23 +47,32 @@ const Span = styled.span`
   padding-left: 5px;
   color: rgb(174, 173, 174);
 `
-
+const getStageItems = stage =>
+  initialData.items.filter(item => item.stage === stage)
 const Builder = () => {
   const [data, setData] = useState(initialData)
+  const [showAll, setShowAll] = useState(true)
 
   return (
     <Container>
       <Aside>
-        <Button>All</Button>
+        <Button onClick={() => setShowAll(true)}>All</Button>
         <Span> Templates</Span>
-        <Button>Social Innovation</Button>
+        <Button onClick={() => setShowAll(false)}>Social Innovation</Button>
       </Aside>
       <Section>
         <h1>Select Builder Schedule - 2019 Fall Cohort</h1>
         <Div>
-          {Object.keys(data).map((items, index) => {
-            return <Stage item={items} key={index} data={data} />
-          })}
+          {console.log("dataItems", data.stages)}
+          {showAll ? (
+            data.stages.map((stage, index) => {
+              return (
+                <Stage stage={stage} key={index} data={getStageItems(stage)} />
+              )
+            })
+          ) : (
+            <Template />
+          )}
         </Div>
       </Section>
     </Container>

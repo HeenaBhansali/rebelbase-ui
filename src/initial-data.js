@@ -1,16 +1,17 @@
 const initialData = {
-  items: {
-    "item-1": { id: "item-1", content: "Problem" },
-    "item-2": { id: "item-2", content: "Solution" },
-    "item-3": { id: "item-3", content: "Team" },
-    "item-4": { id: "item-4", content: "Ecosystem" },
-    "item-5": { id: "item-5", content: "Results" }
-  },
+  stages: ["Ideation", "Validation"],
+  items: [
+    { id: "0", content: "Problem", stage: "Ideation" },
+    { id: "1", content: "Solution", stage: "Ideation" },
+    { id: "2", content: "Team", stage: "Ideation" },
+    { id: "3", content: "Ecosystem", stage: "Validation" },
+    { id: "4", content: "Results", stage: "Validation" }
+  ],
   columns: {
     "column-1": {
       id: "column-1",
       title: "Social Inovation",
-      itemIds: ["item-1", "item-2", "item-3", "item-4", "item-5"]
+      itemIds: ["0", "1", "2", "3", "4"]
     }
   },
   columnOrder: ["column-1"]

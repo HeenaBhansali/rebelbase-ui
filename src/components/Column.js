@@ -3,14 +3,8 @@ import styled from "styled-components"
 import Card from "./Card"
 import { Droppable } from "react-beautiful-dnd"
 
-const Container = styled.div`
-  margin: 10px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-`
-
 const Title = styled.h3`
-  padding: 10px;
+  padding-left: 10px;
 `
 
 const CardList = styled.div`
@@ -21,8 +15,8 @@ const CardList = styled.div`
 
 const Column = ({ column, items }) => {
   return (
-    <Container>
-      <Title>{column.title}</Title>
+    <div>
+      <span>{column.title}</span>
       <Droppable droppableId={column.id}>
         {(provided, snapshot) => (
           <CardList
@@ -37,7 +31,7 @@ const Column = ({ column, items }) => {
           </CardList>
         )}
       </Droppable>
-    </Container>
+    </div>
   )
 }
 

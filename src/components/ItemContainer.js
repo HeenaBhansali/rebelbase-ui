@@ -7,7 +7,8 @@ const Container = styled.div`
 `
 
 const Button = styled.button`
-  margin: auto;
+  margin: 10px;
+  margin-top: 35px;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -38,19 +39,33 @@ const Input = styled.input.attrs({ type: "date" })`
   }
 `
 
-const ItemContainer = ({ item }) => {
+const Time = styled.input.attrs({ type: "time" })`
+  ::-webkit-datetime-picker-indicator {
+    background: url(https://img.icons8.com/pastel-glyph/64/000000/clock.png)
+      center/80% no-repeat;
+
+    color: rgba(0, 0, 0, 0);
+    opacity: 0.5;
+    margin: 10px;
+  }
+`
+
+const ItemContainer = ({ item, selectStatus }) => {
   const [activeState, setActiveState] = useState(false)
 
   return (
     <Container>
       <Button
         onClick={() => setActiveState(!activeState)}
-        style={{ backgroundColor: activeState ? "rgb(66,160,174)" : "white" }}
+        style={{
+          backgroundColor:
+            selectStatus || activeState ? "rgb(66,160,174)" : "white"
+        }}
       />
       <Item key={item.id} item={item.content} />
       <DueDateSection>
         <Input type="date" />
-        <input type="time" />
+        <Time type="date" />
       </DueDateSection>
     </Container>
   )

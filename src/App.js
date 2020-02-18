@@ -1,5 +1,4 @@
 import React from "react"
-import Template from "./components/Template"
 import Builder from "./components/Builder"
 import styled from "styled-components"
 
@@ -11,7 +10,6 @@ function App() {
   return (
     <Container>
       <Builder />
-      {/* <Template /> */}
     </Container>
   )
 }

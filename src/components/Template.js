@@ -8,7 +8,7 @@ const Template = () => {
 
   const onDragEnd = result => {
     const { destination, source, draggableId } = result
-
+    console.log({ result })
     if (!destination) {
       return
     }
@@ -20,7 +20,6 @@ const Template = () => {
     }
 
     const column = data.columns[source.droppableId]
-    console.log("column,", column)
     const newItemIds = Array.from(column.itemIds)
     newItemIds.splice(source.index, 1)
     newItemIds.splice(destination.index, 0, draggableId)
@@ -29,7 +28,7 @@ const Template = () => {
       ...column,
       itemIds: newItemIds
     }
-
+    console.log(newColumn.itemIds)
     const newState = {
       ...data,
       columns: {
@@ -47,14 +46,7 @@ const Template = () => {
         {data.columnOrder.map(columnId => {
           const column = data.columns[columnId]
           const items = column.itemIds.map(itemId => data.items[itemId])
-          return (
-            <Column
-              key={column.id}
-              column={column}
-              items={items}
-              type="template"
-            />
-          )
+          return <Column key={columnId} column={column} items={items} />
         })}
       </div>
     </DragDropContext>

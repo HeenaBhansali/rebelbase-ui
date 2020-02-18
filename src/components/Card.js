@@ -4,16 +4,13 @@ import { Draggable } from "react-beautiful-dnd"
 import ItemContainer from "./ItemContainer"
 
 const Section = styled.section`
-  width: 250px;
-  margin: 10px;
-  height: 50px;
-  border: 1px solid blue;
-  border-radius: 2px;
-  padding: 10px;
-  box-shadow: 2px 2px blue;
-  text-shadow: 0px 1px black;
-  color: black;
-  background-color: ${props => (props.isDragging ? "lightblue" : "white")};
+  display: flex;
+`
+
+const Image = styled.img`
+  width: 20px;
+  height: 30px;
+  margin-top: 30px;
 `
 
 const Card = ({ item, index }) => {
@@ -25,11 +22,11 @@ const Card = ({ item, index }) => {
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
         >
-          <img
+          <Image
             src="https://img.icons8.com/color/16/000000/drag-reorder.png"
             {...provided.dragHandleProps}
-          ></img>
-          {item.content}
+          ></Image>
+          <ItemContainer item={item} />
         </Section>
       )}
     </Draggable>
