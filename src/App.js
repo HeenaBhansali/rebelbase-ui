@@ -10,8 +10,8 @@ const Container = styled.div`
 function App() {
   return (
     <Container>
-      {/* <Builder /> */}
-      <Template />
+      <Builder />
+      {/* <Template /> */}
     </Container>
   )
 }

@@ -19,7 +19,7 @@ const CardList = styled.div`
   background-color: ${props => (props.isDraggingOver ? "lightblue" : "white")};
 `
 
-const Column = ({ column, items, type }) => {
+const Column = ({ column, items }) => {
   return (
     <Container>
       <Title>{column.title}</Title>
@@ -31,7 +31,7 @@ const Column = ({ column, items, type }) => {
             isDraggingOver={snapshot.isDraggingOver}
           >
             {items.map((item, index) => (
-              <Card key={item.id} item={item} index={index} type={type} />
+              <Card key={item.id} item={item} index={index} />
             ))}
             {provided.placeholder}
           </CardList>

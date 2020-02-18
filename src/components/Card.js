@@ -16,15 +16,10 @@ const Section = styled.section`
   background-color: ${props => (props.isDragging ? "lightblue" : "white")};
 `
 
-const Card = ({ item, index, type }) => {
-  const [template, setTemplate] = useState(false)
-  const [isTemplate, setIsTemplate] = useState(false)
-  if (type === template) setIsTemplate(true)
-
-  const createTemplate = (provided, snapshot) => {
-    if (isTemplate) {
-      console.log("isTemlate", isTemplate)
-      return (
+const Card = ({ item, index }) => {
+  return (
+    <Draggable draggableId={item.id} index={index}>
+      {(provided, snapshot) => (
         <Section
           {...provided.draggableProps}
           ref={provided.innerRef}
@@ -34,17 +29,9 @@ const Card = ({ item, index, type }) => {
             src="https://img.icons8.com/color/16/000000/drag-reorder.png"
             {...provided.dragHandleProps}
           ></img>
-          <ItemContainer item={item} />
+          {item.content}
         </Section>
-      )
-    }
-    return null
-  }
-
-  console.log(item)
-  return (
-    <Draggable draggableId={item.id} index={index}>
-      {(provided, snapshot) => createTemplate(provided, snapshot)}
+      )}
     </Draggable>
   )
 }
