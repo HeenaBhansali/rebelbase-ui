@@ -8,7 +8,7 @@ const Template = () => {
 
   const onDragEnd = result => {
     const { destination, source, draggableId } = result
-    console.log({ result })
+
     if (!destination) {
       return
     }
@@ -28,7 +28,7 @@ const Template = () => {
       ...column,
       itemIds: newItemIds
     }
-    console.log(newColumn.itemIds)
+
     const newState = {
       ...data,
       columns: {

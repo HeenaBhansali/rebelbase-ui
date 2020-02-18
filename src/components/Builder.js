@@ -19,6 +19,8 @@ const Container = styled.div`
 const Section = styled.section`
   padding-left: 10px;
   width: max-content;
+  padding-left: 10px;
+  margin-left: auto;
 `
 
 const Div = styled.div`
@@ -63,7 +65,6 @@ const Builder = () => {
       <Section>
         <h1>Select Builder Schedule - 2019 Fall Cohort</h1>
         <Div>
-          {console.log("dataItems", data.stages)}
           {showAll ? (
             data.stages.map((stage, index) => {
               return (

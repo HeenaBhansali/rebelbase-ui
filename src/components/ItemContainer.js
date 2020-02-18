@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Item from "./Item"
 import styled from "styled-components"
 
@@ -50,23 +50,42 @@ const Time = styled.input.attrs({ type: "time" })`
   }
 `
 
-const ItemContainer = ({ item, selectStatus }) => {
-  const [activeState, setActiveState] = useState(false)
+const ItemContainer = ({
+  index,
+  item,
+  selectStatus,
+  isStage = false,
+  setItemStatus = () => null
+}) => {
+  const [buttonStatus, setButtonStatus] = useState(true)
+  const handleClick = () => {
+    if (isStage) return setItemStatus(index)
+    setButtonStatus(!buttonStatus)
+  }
+
+  const isSelected = () => (!isStage && buttonStatus) || selectStatus
+
+  const renderButton = clickHandler => {
+    return (
+      <Button
+        onClick={clickHandler}
+        style={{
+          backgroundColor: isSelected() ? "rgb(66,160,174)" : "white"
+        }}
+      />
+    )
+  }
 
   return (
     <Container>
-      <Button
-        onClick={() => setActiveState(!activeState)}
-        style={{
-          backgroundColor:
-            selectStatus || activeState ? "rgb(66,160,174)" : "white"
-        }}
-      />
+      {renderButton(handleClick)}
       <Item key={item.id} item={item.content} />
-      <DueDateSection>
-        <Input type="date" />
-        <Time type="date" />
-      </DueDateSection>
+      {isSelected() && (
+        <DueDateSection>
+          <Input type="date" />
+          <Time type="date" />
+        </DueDateSection>
+      )}
     </Container>
   )
 }
