@@ -12,7 +12,7 @@ const Container = styled.div`
   margin-right: 20%;
   padding: 20px;
   color: black;
-  box-shadow: 6px 20px 20px 0px #00000057;
+  box-shadow: 10px 20px 20px rgb(137, 140, 140);
   display: grid;
   grid-template-columns: 20% 80%;
 `
@@ -24,6 +24,7 @@ const Section = styled.section`
 `
 
 const Div = styled.div`
+  width: 700px;
   border: 1px solid rgb(241, 242, 242);
   padding: 10px;
 `
@@ -58,9 +59,25 @@ const Builder = () => {
   return (
     <Container>
       <Aside>
-        <Button onClick={() => setShowAll(true)}>All</Button>
+        <Button
+          onClick={() => {
+            setShowAll(true)
+          }}
+          style={{
+            backgroundColor: showAll && "rgb(227,228,228)"
+          }}
+        >
+          All
+        </Button>
         <Span> Templates</Span>
-        <Button onClick={() => setShowAll(false)}>Social Innovation</Button>
+        <Button
+          onClick={() => setShowAll(false)}
+          style={{
+            backgroundColor: !showAll && "rgb(227,228,228)"
+          }}
+        >
+          Social Innovation
+        </Button>
       </Aside>
       <Section>
         <h1>Select Builder Schedule - 2019 Fall Cohort</h1>

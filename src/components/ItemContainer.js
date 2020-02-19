@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import Item from "./Item"
 import styled from "styled-components"
 
+import { DatePicker, TimePicker } from "@progress/kendo-react-dateinputs"
+
 const Container = styled.div`
   display: flex;
 `
@@ -14,25 +16,26 @@ const Button = styled.button`
   height: 20px;
 `
 const DueDateSection = styled.div`
-  margin: 30px;
-  margin-left: 50px;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 30px;
 `
+
 const Input = styled.input.attrs({ type: "date" })`
+  width: 130px;
+  height: 30px;
   margin: 10px;
 
   ::-webkit-calendar-picker-indicator {
     background: url(https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/calendar-16.png)
       center/80% no-repeat;
-
     color: rgba(0, 0, 0, 0);
     opacity: 0.5;
     margin: 10px;
   }
-
   ::-webkit-calendar-picker-indicator: hover {
     opacity: 0.8;
   }
-
   ::-webkit-inner-spin-button {
     display: none;
     -webkit-appearance: none;
@@ -40,10 +43,13 @@ const Input = styled.input.attrs({ type: "date" })`
 `
 
 const Time = styled.input.attrs({ type: "time" })`
-  ::-webkit-datetime-picker-indicator {
+  width: 130px;
+  height: 30px;
+  margin: 10px;
+
+  ::-webkit-time-picker-indicator {
     background: url(https://img.icons8.com/pastel-glyph/64/000000/clock.png)
       center/80% no-repeat;
-
     color: rgba(0, 0, 0, 0);
     opacity: 0.5;
     margin: 10px;
@@ -79,7 +85,7 @@ const ItemContainer = ({
   return (
     <Container>
       {renderButton(handleClick)}
-      <Item key={item.id} item={item.content} />
+      <Item key={item.id} item={item.content} isSelected={isSelected()} />
       {isSelected() && (
         <DueDateSection>
           <Input type="date" />
